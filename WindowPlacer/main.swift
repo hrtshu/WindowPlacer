@@ -69,19 +69,32 @@ let maxScreenMargin = 50
 let maxWindowWidth = 1520
 let maxWindowHeight = 1140
 
+func getScreenParameters() -> (Int, Int, Int, Int) {
+  guard let screen = NSScreen.main else {
+    return nil
+  }
+
+  let screenWidth = Int(screen.frame.size.width)
+  let screenHeight = Int(screen.frame.size.height)
+
+  let screenMarginX = min(maxScreenMargin, screenWidth * screenMarginPercentage / 100)
+  let screenMarginY = min(maxScreenMargin, screenHeight * screenMarginPercentage / 100)
+
+  return (screenWidth, screenHeight, screenMarginX, screenMarginY)
+}
+
 class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
   func resizeWindow() {
-    guard let screen = NSScreen.main else {
+    guard let screenParameters = getScreenParameters() else {
       print("Failed to get the main screen.")
       return
     }
 
-    let screenWidth = Int(screen.frame.size.width)
-    let screenHeight = Int(screen.frame.size.height)
-
-    let screenMarginX = min(maxScreenMargin, screenWidth * screenMarginPercentage / 100)
-    let screenMarginY = min(maxScreenMargin, screenHeight * screenMarginPercentage / 100)
+    let screenWidth = screenParameters.0
+    let screenHeight = screenParameters.1
+    let screenMarginX = screenParameters.2
+    let screenMarginY = screenParameters.3
 
     let width = min(maxWindowWidth, screenWidth - screenMarginX * 2)
     let height = min(maxWindowHeight, screenHeight - screenMarginY * 2)
