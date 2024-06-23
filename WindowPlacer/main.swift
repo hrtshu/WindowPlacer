@@ -20,7 +20,14 @@ func runAppleScript(script: String) throws -> String {
   throw AppleScriptError.compilationError
 }
 
-func resizeActiveWindow(width: Int, height: Int, x: Int, y: Int) throws {
+func resizeActiveWindow(width: Int?, height: Int?, x: Int?, y: Int?) throws {
+  let changePosition =
+    (x != nil && y != nil)
+    ? "set position of window1 to {\(String(x ?? 0)), \(String(y ?? 0))}" : ""
+  let changeSize =
+    (width != nil && height != nil)
+    ? "set size of window1 to {\(String(width ?? 0)), \(String(height ?? 0))}" : ""
+
   let script =
     """
     tell application "System Events"
@@ -28,8 +35,8 @@ func resizeActiveWindow(width: Int, height: Int, x: Int, y: Int) throws {
 
       tell frontmostApp
         set window1 to first window
-        set position of window1 to {\(x), \(y)}
-        set size of window1 to {\(width), \(height)}
+        \(changePosition)
+        \(changeSize)
       end tell
     end tell
     """
@@ -37,9 +44,29 @@ func resizeActiveWindow(width: Int, height: Int, x: Int, y: Int) throws {
   try runAppleScript(script: script)
 }
 
+func getActiveWindowSizeAndPosition() throws -> [Int] {
+  let script =
+    """
+    tell application "System Events"
+      set frontmostApp to first application process whose frontmost is true
+
+      tell frontmostApp
+        set window1 to first window
+        set window1Size to get size of window1
+        set window1Position to get position of window1
+        do shell script "echo " & item 1 of window1Size & "," & item 2 of window1Size & "," & item 1 of window1Position & "," & item 2 of window1Position
+      end tell
+    end tell
+    """
+
+  let output = try runAppleScript(script: script)
+  let values = output.split(separator: ",").compactMap { Int($0) }
+  return values
+}
+
 class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
-  func centerWindow() {
+  func resizeWindow() {
     guard let screen = NSScreen.main else {
       print("Failed to get the main screen.")
       return
@@ -50,11 +77,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let width = min(1520, screenWidth)
     let height = min(1140, screenHeight)
-    let positionX = (screenWidth - width) / 2
-    let positionY = (screenHeight - height) / 2
 
     do {
-      try resizeActiveWindow(width: width, height: height, x: positionX, y: positionY)
+      let res = try getActiveWindowSizeAndPosition()
+      let currentWidth = res[0]
+      let currentHeight = res[1]
+      let currentX = res[2]
+      let currentY = res[3]
+
+      // 現在のウィンドウの中心を基準にリサイズする
+      let x = min(screenWidth - width, max(0, currentX - (width - currentWidth) / 2))
+      let y = min(screenHeight - height, max(0, currentY - (height - currentHeight) / 2))
+
+      try resizeActiveWindow(width: width, height: height, x: x, y: y)
     } catch {
       print("Failed to resize the active window. Error: \(error)")
     }
@@ -62,10 +97,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationDidFinishLaunching(_ notification: Notification) {
     if let keyCombo = KeyCombo(key: .upArrow, cocoaModifiers: [.command, .option]) {
-      let hotKeyCenterWindow = HotKey(
+      let hotKeyResizeWindow = HotKey(
         identifier: "CommandOptionUp", keyCombo: keyCombo, target: self,
-        action: #selector(centerWindow))
-      hotKeyCenterWindow.register()
+        action: #selector(resizeWindow))
+      hotKeyResizeWindow.register()
     }
   }
 }
