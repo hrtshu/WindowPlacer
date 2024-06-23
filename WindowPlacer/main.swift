@@ -75,8 +75,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let screenWidth = Int(screen.frame.size.width)
     let screenHeight = Int(screen.frame.size.height)
 
-    let width = min(1520, screenWidth)
-    let height = min(1140, screenHeight)
+    let screenMarginX = min(50, screenWidth * 3 / 100)
+    let screenMarginY = min(50, screenHeight * 3 / 100)
+
+    let width = min(1520, screenWidth - screenMarginX * 2)
+    let height = min(1140, screenHeight - screenMarginY * 2)
 
     do {
       let res = try getActiveWindowSizeAndPosition()
@@ -86,8 +89,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       let currentY = res[3]
 
       // 現在のウィンドウの中心を基準にリサイズする
-      let x = min(screenWidth - width, max(0, currentX - (width - currentWidth) / 2))
-      let y = min(screenHeight - height, max(0, currentY - (height - currentHeight) / 2))
+      let x = min(
+        screenWidth - width - screenMarginX,
+        max(screenMarginX, currentX - (width - currentWidth) / 2))
+      let y = min(
+        screenHeight - height - screenMarginY,
+        max(screenMarginY, currentY - (height - currentHeight) / 2))
 
       try resizeActiveWindow(width: width, height: height, x: x, y: y)
     } catch {
