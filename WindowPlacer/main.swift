@@ -64,6 +64,11 @@ func getActiveWindowSizeAndPosition() throws -> [Int] {
   return values
 }
 
+let screenMarginPercentage = 3
+let maxScreenMargin = 50
+let maxWindowWidth = 1520
+let maxWindowHeight = 1140
+
 class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
   func resizeWindow() {
@@ -75,11 +80,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let screenWidth = Int(screen.frame.size.width)
     let screenHeight = Int(screen.frame.size.height)
 
-    let screenMarginX = min(50, screenWidth * 3 / 100)
-    let screenMarginY = min(50, screenHeight * 3 / 100)
+    let screenMarginX = min(maxScreenMargin, screenWidth * screenMarginPercentage / 100)
+    let screenMarginY = min(maxScreenMargin, screenHeight * screenMarginPercentage / 100)
 
-    let width = min(1520, screenWidth - screenMarginX * 2)
-    let height = min(1140, screenHeight - screenMarginY * 2)
+    let width = min(maxWindowWidth, screenWidth - screenMarginX * 2)
+    let height = min(maxWindowHeight, screenHeight - screenMarginY * 2)
 
     do {
       let res = try getActiveWindowSizeAndPosition()
