@@ -1,0 +1,6 @@
+framework module Pods_WindowPlacer {
+  umbrella header "Pods-WindowPlacer-umbrella.h"
+
+  export *
+  module * { export * }
+}

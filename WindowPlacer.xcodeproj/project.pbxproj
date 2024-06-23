@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FB57037F504AA2E29068592 /* Pods_WindowPlacer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F9B7B2F40C7A55C34CA40B /* Pods_WindowPlacer.framework */; };
 		3FAF5A7F2C27CDDA00EA3B69 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAF5A7E2C27CDDA00EA3B69 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +24,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		182051D7893C43707F40993B /* Pods-WindowPlacer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WindowPlacer.debug.xcconfig"; path = "Target Support Files/Pods-WindowPlacer/Pods-WindowPlacer.debug.xcconfig"; sourceTree = "<group>"; };
 		3FAF5A7B2C27CDDA00EA3B69 /* WindowPlacer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WindowPlacer; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FAF5A7E2C27CDDA00EA3B69 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		B6F1EA609B8A3BC4680F7084 /* Pods-WindowPlacer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WindowPlacer.release.xcconfig"; path = "Target Support Files/Pods-WindowPlacer/Pods-WindowPlacer.release.xcconfig"; sourceTree = "<group>"; };
+		E1F9B7B2F40C7A55C34CA40B /* Pods_WindowPlacer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WindowPlacer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FB57037F504AA2E29068592 /* Pods_WindowPlacer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +48,8 @@
 			children = (
 				3FAF5A7D2C27CDDA00EA3B69 /* WindowPlacer */,
 				3FAF5A7C2C27CDDA00EA3B69 /* Products */,
+				ADFC00AA62CE9BF6C194F96C /* Pods */,
+				7320C5C99F8A2DABE27FAB85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +69,24 @@
 			path = WindowPlacer;
 			sourceTree = "<group>";
 		};
+		7320C5C99F8A2DABE27FAB85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1F9B7B2F40C7A55C34CA40B /* Pods_WindowPlacer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ADFC00AA62CE9BF6C194F96C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				182051D7893C43707F40993B /* Pods-WindowPlacer.debug.xcconfig */,
+				B6F1EA609B8A3BC4680F7084 /* Pods-WindowPlacer.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -69,6 +94,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FAF5A822C27CDDA00EA3B69 /* Build configuration list for PBXNativeTarget "WindowPlacer" */;
 			buildPhases = (
+				01EF9A194FA67499263E1D59 /* [CP] Check Pods Manifest.lock */,
 				3FAF5A772C27CDDA00EA3B69 /* Sources */,
 				3FAF5A782C27CDDA00EA3B69 /* Frameworks */,
 				3FAF5A792C27CDDA00EA3B69 /* CopyFiles */,
@@ -114,6 +140,31 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01EF9A194FA67499263E1D59 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WindowPlacer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3FAF5A772C27CDDA00EA3B69 /* Sources */ = {
@@ -247,6 +298,7 @@
 		};
 		3FAF5A832C27CDDA00EA3B69 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 182051D7893C43707F40993B /* Pods-WindowPlacer.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -256,6 +308,7 @@
 		};
 		3FAF5A842C27CDDA00EA3B69 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6F1EA609B8A3BC4680F7084 /* Pods-WindowPlacer.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
