@@ -106,6 +106,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       let currentX = res[2]
       let currentY = res[3]
 
+      if currentWidth == width && currentHeight == height {
+        return
+      }
+
       // 現在のウィンドウの中心を基準にリサイズする
       let x = min(
         screenWidth - width - screenMarginX,
