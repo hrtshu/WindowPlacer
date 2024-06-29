@@ -72,8 +72,7 @@ func getActiveWindowSizeAndPosition() throws -> (
 
 let screenMarginRate: CGFloat = 0.03
 let maxScreenMargin: CGFloat = 50
-let maxWindowWidth: CGFloat = 1520
-let maxWindowHeight: CGFloat = 1140
+let maxWindowSize = CGSize(width: 1520, height: 1140)
 let screenCenterMaxDeviation: CGFloat = 60
 
 func getScreenParameters() -> (CGSize, CGSize)? {
@@ -119,7 +118,7 @@ func generateNormalRandomBias(maxDeviation: CGPoint) -> CGPoint {
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
-  func resizeWindowCenter(windowWidth: CGFloat, windowHeight: CGFloat, randomBias: Bool = false) {
+  func resizeWindowCenter(size: CGSize, randomBias: Bool = false) {
     guard let screenParameters = getScreenParameters() else {
       print("Failed to get the main screen.")
       return
@@ -128,8 +127,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let screenSize = screenParameters.0
     let screenMargin = screenParameters.1
 
-    let width = min(windowWidth, screenSize.width - screenMargin.width * 2)
-    let height = min(windowHeight, screenSize.height - screenMargin.height * 2)
+    let width = min(size.width, screenSize.width - screenMargin.width * 2)
+    let height = min(size.height, screenSize.height - screenMargin.height * 2)
 
     do {
       let res = try getActiveWindowSizeAndPosition()
@@ -162,13 +161,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   @objc
   func resizeWindow() {
-    resizeWindowCenter(windowWidth: maxWindowWidth, windowHeight: maxWindowHeight, randomBias: true)
+    resizeWindowCenter(size: maxWindowSize, randomBias: true)
   }
 
   @objc
   func resizeWindowDoubled() {
     resizeWindowCenter(
-      windowWidth: maxWindowWidth * 18 / 10, windowHeight: maxWindowHeight, randomBias: true)
+      size: CGSize(width: maxWindowSize.width * 18 / 10, height: maxWindowSize.height),
+      randomBias: true
+    )
   }
 
   @objc
@@ -181,8 +182,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let screenSize = screenParameters.0
     let screenMargin = screenParameters.1
 
-    let width = min(maxWindowWidth, screenSize.width / 2 - screenMargin.width * 15 / 10)
-    let height = min(maxWindowHeight, screenSize.height - screenMargin.height * 2)
+    let width = min(maxWindowSize.width, screenSize.width / 2 - screenMargin.width * 15 / 10)
+    let height = min(maxWindowSize.height, screenSize.height - screenMargin.height * 2)
 
     do {
       let x =
