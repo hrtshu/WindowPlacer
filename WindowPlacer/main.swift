@@ -65,89 +65,90 @@ func getActiveWindowSizeAndPosition() throws -> [Int] {
   return values
 }
 
-let screenMarginPercentage = 3
-let maxScreenMargin = 50
-let maxWindowWidth = 1520
-let maxWindowHeight = 1140
-let screenCenterMaxDeviation = 60
+let screenMarginRate: CGFloat = 0.03
+let maxScreenMargin: CGFloat = 50
+let maxWindowWidth: CGFloat = 1520
+let maxWindowHeight: CGFloat = 1140
+let screenCenterMaxDeviation: CGFloat = 60
 
-func getScreenParameters() -> (Int, Int, Int, Int)? {
+func getScreenParameters() -> (CGSize, CGSize)? {
   guard let screen = NSScreen.main else {
     return nil
   }
 
-  let screenWidth = Int(screen.frame.size.width)
-  let screenHeight = Int(screen.frame.size.height)
+  let screenSize = screen.frame.size
 
-  let screenMarginX = min(maxScreenMargin, screenWidth * screenMarginPercentage / 100)
-  let screenMarginY = min(maxScreenMargin, screenHeight * screenMarginPercentage / 100)
+  let screenMargin = CGSize(
+    width: min(maxScreenMargin, screenSize.width * screenMarginRate),
+    height: min(maxScreenMargin, screenSize.height * screenMarginRate)
+  )
 
-  return (screenWidth, screenHeight, screenMarginX, screenMarginY)
+  return (screenSize, screenMargin)
 }
 
-func generateNormalRandomNumber(mean: Double, standardDeviation: Double) -> Double {
-  let u1 = Double.random(in: Double.ulpOfOne...1)
-  let u2 = Double.random(in: Double.ulpOfOne...1)
+func generateNormalRandomNumber(mean: CGFloat, standardDeviation: CGFloat) -> CGFloat {
+  let u1 = CGFloat.random(in: CGFloat.ulpOfOne...1)
+  let u2 = CGFloat.random(in: CGFloat.ulpOfOne...1)
   let z = sqrt(-2 * log(u1)) * cos(2 * .pi * u2)
   return z * standardDeviation + mean
 }
 
-func randomScreenPosition(maxXDeviation: Double, maxYDeviation: Double) -> (Double, Double) {
-  var randomX = generateNormalRandomNumber(mean: 0, standardDeviation: maxXDeviation)
-  var randomY = generateNormalRandomNumber(mean: 0, standardDeviation: maxYDeviation)
+func randomScreenPosition(maxDeviation: CGPoint) -> CGPoint {
+  var randomX = generateNormalRandomNumber(mean: 0, standardDeviation: maxDeviation.x)
+  var randomY = generateNormalRandomNumber(mean: 0, standardDeviation: maxDeviation.y)
 
-  if randomX > 3 * maxXDeviation {
-    randomX = 3 * maxXDeviation
-  } else if randomX < -3 * maxXDeviation {
-    randomX = -3 * maxXDeviation
+  if randomX > 3 * maxDeviation.x {
+    randomX = 3 * maxDeviation.x
+  } else if randomX < -3 * maxDeviation.x {
+    randomX = -3 * maxDeviation.x
   }
 
-  if randomY > 3 * maxYDeviation {
-    randomY = 3 * maxYDeviation
-  } else if randomY < -3 * maxYDeviation {
-    randomY = -3 * maxYDeviation
+  if randomY > 3 * maxDeviation.y {
+    randomY = 3 * maxDeviation.y
+  } else if randomY < -3 * maxDeviation.y {
+    randomY = -3 * maxDeviation.y
   }
 
-  return (randomX, randomY)
+  return CGPoint(x: randomX, y: randomY)
 }
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
-  func resizeWindowCenter(windowWidth: Int, windowHeight: Int) {
+  func resizeWindowCenter(windowWidth: CGFloat, windowHeight: CGFloat) {
     guard let screenParameters = getScreenParameters() else {
       print("Failed to get the main screen.")
       return
     }
 
-    let screenWidth = screenParameters.0
-    let screenHeight = screenParameters.1
-    let screenMarginX = screenParameters.2
-    let screenMarginY = screenParameters.3
+    let screenSize = screenParameters.0
+    let screenMargin = screenParameters.1
 
-    let width = min(windowWidth, screenWidth - screenMarginX * 2)
-    let height = min(windowHeight, screenHeight - screenMarginY * 2)
+    let width = min(windowWidth, screenSize.width - screenMargin.width * 2)
+    let height = min(windowHeight, screenSize.height - screenMargin.height * 2)
 
     do {
       let res: [Int] = try getActiveWindowSizeAndPosition()
-      let currentWidth = res[0]
-      let currentHeight = res[1]
+      let currentWidth = CGFloat(res[0])
+      let currentHeight = CGFloat(res[1])
 
       if currentWidth == width && currentHeight == height {
         return
       }
 
-      let position = randomScreenPosition(
-        maxXDeviation: Double(screenCenterMaxDeviation),
-        maxYDeviation: Double(screenCenterMaxDeviation)
+      let randomDiff = randomScreenPosition(
+        maxDeviation: CGPoint(
+          x: screenCenterMaxDeviation,
+          y: screenCenterMaxDeviation
+        )
       )
       let x = min(
-        max((screenWidth / 2 + Int(position.0)) - width / 2, screenMarginX),
-        screenWidth - screenMarginX - width)
+        max((screenSize.width / 2 + randomDiff.x) - width / 2, screenMargin.width),
+        screenSize.width - screenMargin.width - width)
       let y = min(
-        max((screenHeight / 2 + Int(position.1)) - height / 2, screenMarginY),
-        screenHeight - screenMarginY - height)
+        max((screenSize.height / 2 + randomDiff.y) - height / 2, screenMargin.height),
+        screenSize.height - screenMargin.height - height)
 
-      try resizeActiveWindow(width: width, height: height, x: x, y: y)
+      try resizeActiveWindow(width: Int(width), height: Int(height), x: Int(x), y: Int(y))
     } catch {
       print("Failed to resize the active window. Error: \(error)")
     }
@@ -170,20 +171,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       return
     }
 
-    let screenWidth = screenParameters.0
-    let screenHeight = screenParameters.1
-    let screenMarginX = screenParameters.2
-    let screenMarginY = screenParameters.3
+    let screenSize = screenParameters.0
+    let screenMargin = screenParameters.1
 
-    let width = min(maxWindowWidth, screenWidth / 2 - screenMarginX * 15 / 10)
-    let height = min(maxWindowHeight, screenHeight - screenMarginY * 2)
+    let width = min(maxWindowWidth, screenSize.width / 2 - screenMargin.width * 15 / 10)
+    let height = min(maxWindowHeight, screenSize.height - screenMargin.height * 2)
 
     do {
       let x =
-        left ? screenWidth / 2 - screenMarginX / 2 - width : screenWidth / 2 + screenMarginX / 2
-      let y = screenHeight / 2 - height / 2
+        left
+        ? (screenSize.width - screenMargin.width) / 2 - width
+        : (screenSize.width + screenMargin.width) / 2
+      let y = (screenSize.height - height) / 2
 
-      try resizeActiveWindow(width: width, height: height, x: x, y: y)
+      try resizeActiveWindow(width: Int(width), height: Int(height), x: Int(x), y: Int(y))
     } catch {
       print("Failed to resize the active window. Error: \(error)")
     }
