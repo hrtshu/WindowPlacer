@@ -21,14 +21,20 @@ func runAppleScript(script: String) throws -> String {
   throw AppleScriptError.compilationError
 }
 
-func resizeActiveWindow(width: Int?, height: Int?, x: Int?, y: Int?) throws {
-  let changePosition =
-    (x != nil && y != nil)
-    ? "set position of window1 to {\(String(x ?? 0)), \(String(y ?? 0))}" : ""
-  let changeSize =
-    (width != nil && height != nil)
-    ? "set size of window1 to {\(String(width ?? 0)), \(String(height ?? 0))}" : ""
+func resizeActiveWindow(size: (width: Int, height: Int)?, position: (x: Int, y: Int)?) throws {
+  var changePosition = ""
+  if let unwrappedPosition = position {
+    changePosition =
+      "set position of window1 to {\(String(unwrappedPosition.x)), \(String(unwrappedPosition.y))}"
+  }
 
+  var changeSize = ""
+  if let unwrappedSize = size {
+    changeSize =
+      "set size of window1 to {\(String(unwrappedSize.width)), \(String(unwrappedSize.height))}"
+  }
+
+  // 先にpositionを変更する（今いる位置が画面の隅の方だと変更したいサイズ分のスペースが確保されておらず画面サイズが変更したいサイズよりも小さくなる可能性がある）
   let script =
     """
     tell application "System Events"
@@ -153,7 +159,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         max((screenSize.height / 2 + bias.y) - height / 2, screenMargin.height),
         screenSize.height - screenMargin.height - height)
 
-      try resizeActiveWindow(width: Int(width), height: Int(height), x: Int(x), y: Int(y))
+      try resizeActiveWindow(
+        size: (width: Int(width), height: Int(height)), position: (x: Int(x), y: Int(y)))
     } catch {
       print("Failed to resize the active window. Error: \(error)")
     }
@@ -192,7 +199,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         : (screenSize.width + screenMargin.width) / 2
       let y = (screenSize.height - height) / 2
 
-      try resizeActiveWindow(width: Int(width), height: Int(height), x: Int(x), y: Int(y))
+      try resizeActiveWindow(
+        size: (width: Int(width), height: Int(height)), position: (x: Int(x), y: Int(y)))
     } catch {
       print("Failed to resize the active window. Error: \(error)")
     }
