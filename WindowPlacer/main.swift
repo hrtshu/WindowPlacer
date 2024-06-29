@@ -69,7 +69,7 @@ let maxScreenMargin = 50
 let maxWindowWidth = 1520
 let maxWindowHeight = 1140
 
-func getScreenParameters() -> (Int, Int, Int, Int) {
+func getScreenParameters() -> (Int, Int, Int, Int)? {
   guard let screen = NSScreen.main else {
     return nil
   }
@@ -100,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let height = min(maxWindowHeight, screenHeight - screenMarginY * 2)
 
     do {
-      let res = try getActiveWindowSizeAndPosition()
+      let res: [Int] = try getActiveWindowSizeAndPosition()
       let currentWidth = res[0]
       let currentHeight = res[1]
       let currentX = res[2]
@@ -120,12 +120,60 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
+  @objc
+  func resizeWindowHalf(left: Bool) {
+    guard let screenParameters = getScreenParameters() else {
+      print("Failed to get the main screen.")
+      return
+    }
+
+    let screenWidth = screenParameters.0
+    let screenHeight = screenParameters.1
+    let screenMarginX = screenParameters.2
+    let screenMarginY = screenParameters.3
+
+    let width = min(maxWindowWidth, screenWidth / 2 - screenMarginX * 15 / 10)
+    let height = min(maxWindowHeight, screenHeight - screenMarginY * 2)
+
+    do {
+      let x =
+        left ? screenWidth / 2 - screenMarginX / 2 - width : screenWidth / 2 + screenMarginX / 2
+      let y = screenHeight / 2 - height / 2
+
+      try resizeActiveWindow(width: width, height: height, x: x, y: y)
+    } catch {
+      print("Failed to resize the active window. Error: \(error)")
+    }
+  }
+
+  @objc
+  func resizeWindowLeftHalf() {
+    resizeWindowHalf(left: true)
+  }
+
+  @objc
+  func resizeWindowRightHalf() {
+    resizeWindowHalf(left: false)
+  }
+
   func applicationDidFinishLaunching(_ notification: Notification) {
     if let keyCombo = KeyCombo(key: .upArrow, cocoaModifiers: [.command, .option]) {
-      let hotKeyResizeWindow = HotKey(
+      HotKey(
         identifier: "CommandOptionUp", keyCombo: keyCombo, target: self,
-        action: #selector(resizeWindow))
-      hotKeyResizeWindow.register()
+        action: #selector(resizeWindow)
+      ).register()
+    }
+    if let keyCombo = KeyCombo(key: .leftArrow, cocoaModifiers: [.command, .option]) {
+      HotKey(
+        identifier: "CommandOptionLeft", keyCombo: keyCombo, target: self,
+        action: #selector(resizeWindowLeftHalf)
+      ).register()
+    }
+    if let keyCombo = KeyCombo(key: .rightArrow, cocoaModifiers: [.command, .option]) {
+      HotKey(
+        identifier: "CommandOptionRight", keyCombo: keyCombo, target: self,
+        action: #selector(resizeWindowRightHalf)
+      ).register()
     }
   }
 }
