@@ -6,6 +6,7 @@ enum AppleScriptError: Error {
   case compilationError
 }
 
+@discardableResult
 func runAppleScript(script: String) throws -> String {
   var error: NSDictionary?
 
@@ -130,8 +131,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       let res: [Int] = try getActiveWindowSizeAndPosition()
       let currentWidth = res[0]
       let currentHeight = res[1]
-      let currentX = res[2]
-      let currentY = res[3]
 
       if currentWidth == width && currentHeight == height {
         return
