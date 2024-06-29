@@ -93,7 +93,7 @@ func generateNormalRandomNumber(mean: CGFloat, standardDeviation: CGFloat) -> CG
   return z * standardDeviation + mean
 }
 
-func randomScreenPosition(maxDeviation: CGPoint) -> CGPoint {
+func generateNormalRandomBias(maxDeviation: CGPoint) -> CGPoint {
   var randomX = generateNormalRandomNumber(mean: 0, standardDeviation: maxDeviation.x)
   var randomY = generateNormalRandomNumber(mean: 0, standardDeviation: maxDeviation.y)
 
@@ -135,17 +135,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return
       }
 
-      let randomDiff = randomScreenPosition(
+      let bias = generateNormalRandomBias(
         maxDeviation: CGPoint(
           x: screenCenterMaxDeviation,
           y: screenCenterMaxDeviation
         )
       )
       let x = min(
-        max((screenSize.width / 2 + randomDiff.x) - width / 2, screenMargin.width),
+        max((screenSize.width / 2 + bias.x) - width / 2, screenMargin.width),
         screenSize.width - screenMargin.width - width)
       let y = min(
-        max((screenSize.height / 2 + randomDiff.y) - height / 2, screenMargin.height),
+        max((screenSize.height / 2 + bias.y) - height / 2, screenMargin.height),
         screenSize.height - screenMargin.height - height)
 
       try resizeActiveWindow(width: Int(width), height: Int(height), x: Int(x), y: Int(y))
