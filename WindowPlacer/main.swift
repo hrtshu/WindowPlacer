@@ -81,7 +81,7 @@ let maxScreenMargin: CGFloat = 50
 let maxWindowSize = CGSize(width: 1520, height: 1140)
 let screenCenterMaxDeviation: CGFloat = 60
 
-func getScreenParameters() -> (CGSize, CGSize)? {
+func getScreenParams() -> (size: CGSize, margin: CGSize)? {
   guard let screen = NSScreen.main else {
     return nil
   }
@@ -93,7 +93,7 @@ func getScreenParameters() -> (CGSize, CGSize)? {
     height: min(maxScreenMargin, screenSize.height * screenMarginRate)
   )
 
-  return (screenSize, screenMargin)
+  return (size: screenSize, margin: screenMargin)
 }
 
 func generateNormalRandomNumber(mean: CGFloat, standardDeviation: CGFloat) -> CGFloat {
@@ -125,13 +125,13 @@ func generateNormalRandomBias(maxDeviation: CGPoint) -> CGPoint {
 class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
   func resizeWindowCenter(size: CGSize, randomBias: Bool = false) {
-    guard let screenParameters = getScreenParameters() else {
+    guard let screenParams = getScreenParams() else {
       print("Failed to get the main screen.")
       return
     }
 
-    let screenSize = screenParameters.0
-    let screenMargin = screenParameters.1
+    let screenSize = screenParams.size
+    let screenMargin = screenParams.margin
 
     let width = min(size.width, screenSize.width - screenMargin.width * 2)
     let height = min(size.height, screenSize.height - screenMargin.height * 2)
@@ -181,13 +181,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   @objc
   func resizeWindowHalf(left: Bool) {
-    guard let screenParameters = getScreenParameters() else {
+    guard let screenParams = getScreenParams() else {
       print("Failed to get the main screen.")
       return
     }
 
-    let screenSize = screenParameters.0
-    let screenMargin = screenParameters.1
+    let screenSize = screenParams.size
+    let screenMargin = screenParams.margin
 
     let width = min(maxWindowSize.width, screenSize.width / 2 - screenMargin.width * 15 / 10)
     let height = min(maxWindowSize.height, screenSize.height - screenMargin.height * 2)
