@@ -112,7 +112,7 @@ func randomScreenPosition(maxXDeviation: Double, maxYDeviation: Double) -> (Doub
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
-  func resizeWindow() {
+  func resizeWindowCenter(windowWidth: Int, windowHeight: Int) {
     guard let screenParameters = getScreenParameters() else {
       print("Failed to get the main screen.")
       return
@@ -123,8 +123,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let screenMarginX = screenParameters.2
     let screenMarginY = screenParameters.3
 
-    let width = min(maxWindowWidth, screenWidth - screenMarginX * 2)
-    let height = min(maxWindowHeight, screenHeight - screenMarginY * 2)
+    let width = min(windowWidth, screenWidth - screenMarginX * 2)
+    let height = min(windowHeight, screenHeight - screenMarginY * 2)
 
     do {
       let res: [Int] = try getActiveWindowSizeAndPosition()
@@ -152,6 +152,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     } catch {
       print("Failed to resize the active window. Error: \(error)")
     }
+  }
+
+  @objc
+  func resizeWindow() {
+    resizeWindowCenter(windowWidth: maxWindowWidth, windowHeight: maxWindowHeight)
+  }
+
+  @objc
+  func resizeWindowDoubled() {
+    resizeWindowCenter(windowWidth: maxWindowWidth * 18 / 10, windowHeight: maxWindowHeight)
   }
 
   @objc
@@ -195,6 +205,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       HotKey(
         identifier: "CommandOptionUp", keyCombo: keyCombo, target: self,
         action: #selector(resizeWindow)
+      ).register()
+    }
+    if let keyCombo = KeyCombo(key: .upArrow, cocoaModifiers: [.command, .option, .shift]) {
+      HotKey(
+        identifier: "CommandOptionShiftUp", keyCombo: keyCombo, target: self,
+        action: #selector(resizeWindowDoubled)
       ).register()
     }
     if let keyCombo = KeyCombo(key: .leftArrow, cocoaModifiers: [.command, .option]) {
