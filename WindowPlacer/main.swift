@@ -104,22 +104,22 @@ func generateNormalRandomNumber(mean: CGFloat, standardDeviation: CGFloat) -> CG
 }
 
 func generateNormalRandomBias(maxDeviation: CGPoint) -> CGPoint {
-  var randomX = generateNormalRandomNumber(mean: 0, standardDeviation: maxDeviation.x)
-  var randomY = generateNormalRandomNumber(mean: 0, standardDeviation: maxDeviation.y)
+  var x = generateNormalRandomNumber(mean: 0, standardDeviation: maxDeviation.x)
+  var y = generateNormalRandomNumber(mean: 0, standardDeviation: maxDeviation.y)
 
-  if randomX > 3 * maxDeviation.x {
-    randomX = 3 * maxDeviation.x
-  } else if randomX < -3 * maxDeviation.x {
-    randomX = -3 * maxDeviation.x
+  if x > 3 * maxDeviation.x {
+    x = 3 * maxDeviation.x
+  } else if x < -3 * maxDeviation.x {
+    x = -3 * maxDeviation.x
   }
 
-  if randomY > 3 * maxDeviation.y {
-    randomY = 3 * maxDeviation.y
-  } else if randomY < -3 * maxDeviation.y {
-    randomY = -3 * maxDeviation.y
+  if y > 3 * maxDeviation.y {
+    y = 3 * maxDeviation.y
+  } else if y < -3 * maxDeviation.y {
+    y = -3 * maxDeviation.y
   }
 
-  return CGPoint(x: randomX, y: randomY)
+  return CGPoint(x: x, y: y)
 }
 
 class AppDelegate: NSObject, NSApplicationDelegate {
