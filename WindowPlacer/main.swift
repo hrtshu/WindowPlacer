@@ -68,6 +68,7 @@ let screenMarginPercentage = 3
 let maxScreenMargin = 50
 let maxWindowWidth = 1520
 let maxWindowHeight = 1140
+let screenCenterMaxDeviation = 60
 
 func getScreenParameters() -> (Int, Int, Int, Int)? {
   guard let screen = NSScreen.main else {
@@ -81,6 +82,32 @@ func getScreenParameters() -> (Int, Int, Int, Int)? {
   let screenMarginY = min(maxScreenMargin, screenHeight * screenMarginPercentage / 100)
 
   return (screenWidth, screenHeight, screenMarginX, screenMarginY)
+}
+
+func generateNormalRandomNumber(mean: Double, standardDeviation: Double) -> Double {
+  let u1 = Double.random(in: Double.ulpOfOne...1)
+  let u2 = Double.random(in: Double.ulpOfOne...1)
+  let z = sqrt(-2 * log(u1)) * cos(2 * .pi * u2)
+  return z * standardDeviation + mean
+}
+
+func randomScreenPosition(maxXDeviation: Double, maxYDeviation: Double) -> (Double, Double) {
+  var randomX = generateNormalRandomNumber(mean: 0, standardDeviation: maxXDeviation)
+  var randomY = generateNormalRandomNumber(mean: 0, standardDeviation: maxYDeviation)
+
+  if randomX > 3 * maxXDeviation {
+    randomX = 3 * maxXDeviation
+  } else if randomX < -3 * maxXDeviation {
+    randomX = -3 * maxXDeviation
+  }
+
+  if randomY > 3 * maxYDeviation {
+    randomY = 3 * maxYDeviation
+  } else if randomY < -3 * maxYDeviation {
+    randomY = -3 * maxYDeviation
+  }
+
+  return (randomX, randomY)
 }
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -110,13 +137,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return
       }
 
-      // 現在のウィンドウの中心を基準にリサイズする
+      let position = randomScreenPosition(
+        maxXDeviation: Double(screenCenterMaxDeviation),
+        maxYDeviation: Double(screenCenterMaxDeviation)
+      )
       let x = min(
-        screenWidth - width - screenMarginX,
-        max(screenMarginX, currentX - (width - currentWidth) / 2))
+        max((screenWidth / 2 + Int(position.0)) - width / 2, screenMarginX),
+        screenWidth - screenMarginX - width)
       let y = min(
-        screenHeight - height - screenMarginY,
-        max(screenMarginY, currentY - (height - currentHeight) / 2))
+        max((screenHeight / 2 + Int(position.1)) - height / 2, screenMarginY),
+        screenHeight - screenMarginY - height)
 
       try resizeActiveWindow(width: width, height: height, x: x, y: y)
     } catch {
