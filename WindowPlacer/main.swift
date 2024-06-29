@@ -45,7 +45,9 @@ func resizeActiveWindow(width: Int?, height: Int?, x: Int?, y: Int?) throws {
   try runAppleScript(script: script)
 }
 
-func getActiveWindowSizeAndPosition() throws -> [Int] {
+func getActiveWindowSizeAndPosition() throws -> (
+  size: (width: Int, height: Int), position: (x: Int, y: Int)
+) {
   let script =
     """
     tell application "System Events"
@@ -62,7 +64,10 @@ func getActiveWindowSizeAndPosition() throws -> [Int] {
 
   let output = try runAppleScript(script: script)
   let values = output.split(separator: ",").compactMap { Int($0) }
-  return values
+  return (
+    size: (width: values[0], height: values[1]),
+    position: (x: values[2], y: values[3])
+  )
 }
 
 let screenMarginRate: CGFloat = 0.03
@@ -127,11 +132,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let height = min(windowHeight, screenSize.height - screenMargin.height * 2)
 
     do {
-      let res: [Int] = try getActiveWindowSizeAndPosition()
-      let currentWidth = CGFloat(res[0])
-      let currentHeight = CGFloat(res[1])
+      let res = try getActiveWindowSizeAndPosition()
+      let currentSize = CGSize(width: CGFloat(res.size.width), height: CGFloat(res.size.height))
 
-      if currentWidth == width && currentHeight == height {
+      if currentSize.width == width && currentSize.height == height {
         return
       }
 
