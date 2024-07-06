@@ -133,8 +133,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let screenSize = screenParams.size
     let screenMargin = screenParams.margin
 
-    let width = min(size.width, screenSize.width - screenMargin.width * 2)
-    let height = min(size.height, screenSize.height - screenMargin.height * 2)
+    var width = min(size.width, screenSize.width - screenMargin.width * 2)
+    var height = min(size.height, screenSize.height - screenMargin.height * 2)
+
+    if width < height {
+      height = width / 16 * 10
+    } else {
+      width = height / 10 * 16
+    }
 
     do {
       let res = try getActiveWindowSizeAndPosition()
