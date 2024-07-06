@@ -79,7 +79,7 @@ func getActiveWindowSizeAndPosition() throws -> (
 let screenMarginRate: CGFloat = 0.07
 let maxScreenMargin: CGFloat = 100
 let maxWindowSize = CGSize(width: 1920, height: 1200)  // 16:10
-let screenCenterMaxDeviation: CGFloat = 60
+let screenCenterMaxDeviationRate: CGFloat = 0.02
 
 func getScreenParams() -> (size: CGSize, margin: CGSize)? {
   guard let screen = NSScreen.main else {
@@ -157,16 +157,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         randomBias
         ? generateNormalRandomBias(
           maxDeviation: CGPoint(
-            x: screenCenterMaxDeviation,
-            y: screenCenterMaxDeviation
+            x: screenSize.width * screenCenterMaxDeviationRate,
+            y: screenSize.height * screenCenterMaxDeviationRate
           )
         ) : CGPoint(x: 0, y: 0)
-      let x = min(
-        max((screenSize.width / 2 + bias.x) - width / 2, screenMargin.width),
-        screenSize.width - screenMargin.width - width)
-      let y = min(
-        max((screenSize.height / 2 + bias.y) - height / 2, screenMargin.height),
-        screenSize.height - screenMargin.height - height)
+      let x = min(max((screenSize.width / 2 + bias.x) - width / 2, 0), screenSize.width - width)
+      let y = min(max((screenSize.height / 2 + bias.y) - height / 2, 0), screenSize.height - height)
 
       try resizeActiveWindow(
         size: (width: widthInteger, height: heightInteger),
