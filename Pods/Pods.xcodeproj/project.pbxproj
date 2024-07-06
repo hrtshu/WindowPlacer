@@ -86,13 +86,13 @@
 		88F051365DEACBD84052B39A384B9994 /* Pods-WindowPlacer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WindowPlacer.release.xcconfig"; sourceTree = "<group>"; };
 		9328CFF70AB6B0A9B8BC9FFDF6744A4D /* ModifierEventHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModifierEventHandler.swift; path = Lib/Magnet/ModifierEventHandler.swift; sourceTree = "<group>"; };
 		9482E564101F4369518DA8530C568502 /* Pods-WindowPlacer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WindowPlacer-acknowledgements.markdown"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A54587FFAE57824CEDCD767785A00480 /* IntExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IntExtension.swift; path = Lib/Magnet/Extensions/IntExtension.swift; sourceTree = "<group>"; };
 		A81D95BBF4FE65A178A598B45F1B7CB0 /* Pods-WindowPlacer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WindowPlacer-umbrella.h"; sourceTree = "<group>"; };
 		ABBF72190C6BCC2EA5A969ECF2EE6A51 /* KeyCombo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyCombo.swift; path = Lib/Magnet/KeyCombo.swift; sourceTree = "<group>"; };
 		B5CFA8BD85BB9D15EA6EA23470E9A88E /* Sauce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Sauce.release.xcconfig; sourceTree = "<group>"; };
 		BA649C7607B10B6DB0B4E3B41E828627 /* HotKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKey.swift; path = Lib/Magnet/HotKey.swift; sourceTree = "<group>"; };
-		BAF234B76B9FC2DE9D5D29C6879D72CD /* Pods_WindowPlacer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WindowPlacer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF234B76B9FC2DE9D5D29C6879D72CD /* Pods-WindowPlacer */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-WindowPlacer"; path = Pods_WindowPlacer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C50F34AAB85F2D113FD01EE45D4D5F /* Magnet */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Magnet; path = Magnet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		C3A3A85A948CCF40EF0A14E2612F0C03 /* Sauce-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Sauce-umbrella.h"; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				C0C50F34AAB85F2D113FD01EE45D4D5F /* Magnet */,
-				BAF234B76B9FC2DE9D5D29C6879D72CD /* Pods_WindowPlacer.framework */,
+				BAF234B76B9FC2DE9D5D29C6879D72CD /* Pods-WindowPlacer */,
 				364449AD618FFE24D604840F6B90D451 /* Sauce */,
 			);
 			name = Products;
@@ -205,6 +205,7 @@
 				5E766A1C0C759B75D69E20CBCED9754C /* TISInputSource+Property.swift */,
 				D7AF54AEE53129487E2A654B3EE3F3F8 /* Support Files */,
 			);
+			name = Sauce;
 			path = Sauce;
 			sourceTree = "<group>";
 		};
@@ -261,6 +262,7 @@
 				0BC5A412C8F2924047365A1788D7C182 /* NSEventExtension.swift */,
 				63BE2E22F691550F8B86DA32D946A1AA /* Support Files */,
 			);
+			name = Magnet;
 			path = Magnet;
 			sourceTree = "<group>";
 		};
@@ -330,7 +332,7 @@
 			);
 			name = "Pods-WindowPlacer";
 			productName = Pods_WindowPlacer;
-			productReference = BAF234B76B9FC2DE9D5D29C6879D72CD /* Pods_WindowPlacer.framework */;
+			productReference = BAF234B76B9FC2DE9D5D29C6879D72CD /* Pods-WindowPlacer */;
 			productType = "com.apple.product-type.framework";
 		};
 		7C965F087BD52D10B405DF57848EC900 /* Sauce */ = {
