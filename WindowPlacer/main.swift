@@ -143,10 +143,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     do {
-      let res = try getActiveWindowSizeAndPosition()
-      let currentSize = CGSize(width: CGFloat(res.size.width), height: CGFloat(res.size.height))
+      let currentSize = try getActiveWindowSizeAndPosition().size
+      let widthInteger = Int(width)
+      let heightInteger = Int(height)
 
-      if currentSize.width == width && currentSize.height == height {
+      if currentSize.width == widthInteger && currentSize.height == heightInteger {
         return
       }
 
@@ -166,7 +167,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         screenSize.height - screenMargin.height - height)
 
       try resizeActiveWindow(
-        size: (width: Int(width), height: Int(height)), position: (x: Int(x), y: Int(y)))
+        size: (width: widthInteger, height: heightInteger),
+        position: (x: Int(x), y: Int(y))
+      )
     } catch {
       print("Failed to resize the active window. Error: \(error)")
     }
