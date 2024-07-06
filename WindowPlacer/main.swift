@@ -76,8 +76,8 @@ func getActiveWindowSizeAndPosition() throws -> (
   )
 }
 
-let screenMarginRate: CGFloat = 0.03
-let maxScreenMargin: CGFloat = 50
+let screenMarginRate: CGFloat = 0.07
+let maxScreenMargin: CGFloat = 100
 let maxWindowSize = CGSize(width: 1920, height: 1200)  // 16:10
 let screenCenterMaxDeviation: CGFloat = 60
 
