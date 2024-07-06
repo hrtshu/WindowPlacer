@@ -124,7 +124,7 @@ func generateNormalRandomBias(maxDeviation: CGPoint) -> CGPoint {
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
-  func resizeWindowCenter(size: CGSize, randomBias: Bool = false) {
+  func resizeWindowCenter(size: CGSize, randomBias: Bool = false, limitWindowRatio: Bool = false) {
     guard let screenParams = getScreenParams() else {
       print("Failed to get the main screen.")
       return
@@ -136,10 +136,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var width = min(size.width, screenSize.width - screenMargin.width * 2)
     var height = min(size.height, screenSize.height - screenMargin.height * 2)
 
-    if width < height {
-      height = width / 16 * 10
-    } else {
-      width = height / 10 * 16
+    if limitWindowRatio {
+      if width < height {
+        height = width / 16 * 10
+      } else {
+        width = height / 10 * 16
+      }
     }
 
     do {
@@ -177,7 +179,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   @objc
   func resizeWindow() {
-    resizeWindowCenter(size: maxWindowSize, randomBias: true)
+    resizeWindowCenter(size: maxWindowSize, randomBias: true, limitWindowRatio: true)
   }
 
   @objc
