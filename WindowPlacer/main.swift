@@ -52,7 +52,7 @@ func resizeActiveWindow(size: (width: Int, height: Int)?, position: (x: Int, y: 
 }
 
 func getActiveWindowSizeAndPosition() throws -> (
-  size: (width: Int, height: Int), position: (x: Int, y: Int)
+  size: CGSize, position: CGPoint
 ) {
   let script =
     """
@@ -71,8 +71,8 @@ func getActiveWindowSizeAndPosition() throws -> (
   let output = try runAppleScript(script: script)
   let values = output.split(separator: ",").compactMap { Int($0) }
   return (
-    size: (width: values[0], height: values[1]),
-    position: (x: values[2], y: values[3])
+    size: CGSize(width: values[0], height: values[1]),
+    position: CGPoint(x: values[2], y: values[3])
   )
 }
 
@@ -80,21 +80,6 @@ let screenMarginRate: CGFloat = 0.07
 let maxScreenMargin: CGFloat = 100
 let maxWindowSize = CGSize(width: 1920, height: 1200)  // 16:10
 let screenCenterMaxDeviationRate: CGFloat = 0.02
-
-func getScreenParams() -> (size: CGSize, margin: CGSize)? {
-  guard let screen = NSScreen.main else {
-    return nil
-  }
-
-  let screenSize = screen.frame.size
-
-  let screenMargin = CGSize(
-    width: min(maxScreenMargin, screenSize.width * screenMarginRate),
-    height: min(maxScreenMargin, screenSize.height * screenMarginRate)
-  )
-
-  return (size: screenSize, margin: screenMargin)
-}
 
 func generateNormalRandomNumber(mean: CGFloat, standardDeviation: CGFloat) -> CGFloat {
   let u1 = CGFloat.random(in: CGFloat.ulpOfOne...1)
@@ -122,15 +107,70 @@ func generateNormalRandomBias(maxDeviation: CGPoint) -> CGPoint {
   return CGPoint(x: x, y: y)
 }
 
+func findScreenForWindow(size: CGSize, position: CGPoint) -> (position: CGPoint, size: CGSize)? {
+  let screens = NSScreen.screens
+  guard let firstScreen = screens.first else { return nil }
+
+  let windowTopLeft = CGPoint(x: position.x, y: position.y)
+  let windowBottomRight = CGPoint(x: position.x + size.width, y: position.y + size.height)
+
+  for screen: NSScreen in screens {
+    let screenFrame = screen.frame
+
+    // screen.frameの座標系は画面の左下が原点、右方向・上方向に増加なので、画面の左上を原点、右方向・下方向に増加の座標系に変換する
+    let screenTopLeft = CGPoint(
+      x: screenFrame.minX,
+      y: firstScreen.frame.height - screenFrame.maxY
+    )
+    let screenBottomRight = CGPoint(
+      x: screenFrame.maxX,
+      y: firstScreen.frame.height - screenFrame.minY
+    )
+
+    // ウィンドウの左端が画面の右端より右にあるかウィンドウの右端が画面の左端より左にある場合はウィンドウはその画面にはないので、その逆の場合にウィンドウがその画面にあると判断する
+    if (windowTopLeft.x < screenBottomRight.x && windowBottomRight.x >= screenTopLeft.x)
+      && (windowTopLeft.y < screenBottomRight.y && windowBottomRight.y >= screenTopLeft.y)
+    {
+      return (position: screenTopLeft, size: screenFrame.size)
+    }
+  }
+
+  return nil
+}
+
+func getScreenParams(windowSize: CGSize, windowPosition: CGPoint) -> (
+  size: CGSize, position: CGPoint, margin: CGSize
+)? {
+  guard let screen = findScreenForWindow(size: windowSize, position: windowPosition) else {
+    return nil
+  }
+
+  let screenMargin = CGSize(
+    width: min(maxScreenMargin, screen.size.width * screenMarginRate),
+    height: min(maxScreenMargin, screen.size.height * screenMarginRate)
+  )
+
+  return (size: screen.size, position: screen.position, margin: screenMargin)
+}
+
 class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
   func resizeWindowCenter(size: CGSize, randomBias: Bool = false, limitWindowRatio: Bool = false) {
-    guard let screenParams = getScreenParams() else {
+    guard let activeWindowParams = try? getActiveWindowSizeAndPosition() else {
+      print("Failed to get the active window size and position.")
+      return
+    }
+
+    guard
+      let screenParams = getScreenParams(
+        windowSize: activeWindowParams.size, windowPosition: activeWindowParams.position)
+    else {
       print("Failed to get the main screen.")
       return
     }
 
     let screenSize = screenParams.size
+    let screenPosition = screenParams.position
     let screenMargin = screenParams.margin
 
     var width = min(size.width, screenSize.width - screenMargin.width * 2)
@@ -144,28 +184,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       }
     }
 
+    if Int(activeWindowParams.size.width) == Int(width)
+      && Int(activeWindowParams.size.height) == Int(height)
+    {
+      return
+    }
+
+    let bias =
+      randomBias
+      ? generateNormalRandomBias(
+        maxDeviation: CGPoint(
+          x: screenSize.width * screenCenterMaxDeviationRate,
+          y: screenSize.height * screenCenterMaxDeviationRate
+        )
+      ) : CGPoint(x: 0, y: 0)
+    let x =
+      min(max((screenSize.width / 2 + bias.x) - width / 2, 0), screenSize.width - width)
+      + screenPosition.x
+    let y =
+      min(max((screenSize.height / 2 + bias.y) - height / 2, 0), screenSize.height - height)
+      + screenPosition.y
+
     do {
-      let currentSize = try getActiveWindowSizeAndPosition().size
-      let widthInteger = Int(width)
-      let heightInteger = Int(height)
-
-      if currentSize.width == widthInteger && currentSize.height == heightInteger {
-        return
-      }
-
-      let bias =
-        randomBias
-        ? generateNormalRandomBias(
-          maxDeviation: CGPoint(
-            x: screenSize.width * screenCenterMaxDeviationRate,
-            y: screenSize.height * screenCenterMaxDeviationRate
-          )
-        ) : CGPoint(x: 0, y: 0)
-      let x = min(max((screenSize.width / 2 + bias.x) - width / 2, 0), screenSize.width - width)
-      let y = min(max((screenSize.height / 2 + bias.y) - height / 2, 0), screenSize.height - height)
-
       try resizeActiveWindow(
-        size: (width: widthInteger, height: heightInteger),
+        size: (width: Int(width), height: Int(height)),
         position: (x: Int(x), y: Int(y))
       )
     } catch {
@@ -188,12 +230,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   @objc
   func resizeWindowHalf(left: Bool) {
-    guard let screenParams = getScreenParams() else {
+    guard let activeWindowParams = try? getActiveWindowSizeAndPosition() else {
+      print("Failed to get the active window size and position.")
+      return
+    }
+
+    guard
+      let screenParams = getScreenParams(
+        windowSize: activeWindowParams.size, windowPosition: activeWindowParams.position)
+    else {
       print("Failed to get the main screen.")
       return
     }
 
     let screenSize = screenParams.size
+    let screenPosition = screenParams.position
     let screenMargin = screenParams.margin
 
     let width = min(maxWindowSize.width, screenSize.width / 2 - screenMargin.width * 15 / 10)
@@ -201,10 +252,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     do {
       let x =
-        left
-        ? (screenSize.width - screenMargin.width) / 2 - width
-        : (screenSize.width + screenMargin.width) / 2
-      let y = (screenSize.height - height) / 2
+        (left
+          ? (screenSize.width - screenMargin.width) / 2 - width
+          : (screenSize.width + screenMargin.width) / 2) + screenPosition.x
+      let y = (screenSize.height - height) / 2 + screenPosition.y
 
       try resizeActiveWindow(
         size: (width: Int(width), height: Int(height)), position: (x: Int(x), y: Int(y)))
