@@ -6,21 +6,6 @@ enum AppleScriptError: Error {
   case compilationError
 }
 
-@discardableResult
-func runAppleScript(script: String) throws -> String {
-  var error: NSDictionary?
-
-  if let scriptObject = NSAppleScript(source: script) {
-    let output = scriptObject.executeAndReturnError(&error)
-    if let error = error {
-      throw AppleScriptError.executionError(error)
-    }
-    return output.stringValue ?? ""
-  }
-
-  throw AppleScriptError.compilationError
-}
-
 func resizeActiveWindow(size: (width: Int, height: Int)?, position: (x: Int, y: Int)?) throws {
   var changePosition = ""
   if let unwrappedPosition = position {
@@ -48,28 +33,44 @@ func resizeActiveWindow(size: (width: Int, height: Int)?, position: (x: Int, y: 
     end tell
     """
 
-  try runAppleScript(script: script)
+  if let scriptObject = NSAppleScript(source: script) {
+    var error: NSDictionary?
+    scriptObject.executeAndReturnError(&error)
+    if let error = error {
+      throw AppleScriptError.executionError(error)
+    }
+  } else {
+    throw AppleScriptError.compilationError
+  }
 }
+
+let scriptToGetActiveWindowSizeAndPosition =
+  """
+  tell application "System Events"
+    set frontmostApp to first application process whose frontmost is true
+
+    tell frontmostApp
+      set window1 to first window
+      set window1Size to get size of window1
+      set window1Position to get position of window1
+      do shell script "echo " & item 1 of window1Size & "," & item 2 of window1Size & "," & item 1 of window1Position & "," & item 2 of window1Position
+    end tell
+  end tell
+  """
+let scriptObjectToGetActiveWindowSizeAndPosition =
+  NSAppleScript(source: scriptToGetActiveWindowSizeAndPosition)!
+scriptObjectToGetActiveWindowSizeAndPosition.compileAndReturnError(nil)
 
 func getActiveWindowSizeAndPosition() throws -> (
   size: CGSize, position: CGPoint
 ) {
-  let script =
-    """
-    tell application "System Events"
-      set frontmostApp to first application process whose frontmost is true
+  var error: NSDictionary?
+  let output = scriptObjectToGetActiveWindowSizeAndPosition.executeAndReturnError(&error)
+  if let error = error {
+    throw AppleScriptError.executionError(error)
+  }
 
-      tell frontmostApp
-        set window1 to first window
-        set window1Size to get size of window1
-        set window1Position to get position of window1
-        do shell script "echo " & item 1 of window1Size & "," & item 2 of window1Size & "," & item 1 of window1Position & "," & item 2 of window1Position
-      end tell
-    end tell
-    """
-
-  let output = try runAppleScript(script: script)
-  let values = output.split(separator: ",").compactMap { Int($0) }
+  let values = (output.stringValue ?? "").split(separator: ",").compactMap { Int($0) }
   return (
     size: CGSize(width: values[0], height: values[1]),
     position: CGPoint(x: values[2], y: values[3])
