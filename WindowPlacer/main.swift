@@ -275,6 +275,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     resizeWindowHalf(left: false)
   }
 
+  @objc
+  func moveWindowToCenter() {
+    guard let activeWindowParams = try? getActiveWindowSizeAndPosition() else {
+      print("Failed to get the active window size and position.")
+      return
+    }
+
+    guard
+      let screenParams = getScreenParams(
+        windowSize: activeWindowParams.size, windowPosition: activeWindowParams.position)
+    else {
+      print("Failed to get the main screen.")
+      return
+    }
+
+    let screenSize = screenParams.size
+    let screenPosition = screenParams.position
+
+    let width = activeWindowParams.size.width
+    let height = activeWindowParams.size.height
+
+    let x = (screenSize.width - width) / 2 + screenPosition.x
+    let y = (screenSize.height - height) / 2 + screenPosition.y
+
+    do {
+      try resizeActiveWindow(
+        size: (width: Int(width), height: Int(height)), position: (x: Int(x), y: Int(y)))
+    } catch {
+      print("Failed to move the active window to the center. Error: \(error)")
+    }
+  }
+
   func applicationDidFinishLaunching(_ notification: Notification) {
     if let keyCombo = KeyCombo(key: .upArrow, cocoaModifiers: [.command, .option]) {
       HotKey(
@@ -298,6 +330,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       HotKey(
         identifier: "CommandOptionRight", keyCombo: keyCombo, target: self,
         action: #selector(resizeWindowRightHalf)
+      ).register()
+    }
+    if let keyCombo = KeyCombo(key: .return, cocoaModifiers: [.command, .option]) {
+      HotKey(
+        identifier: "CommandOptionEnter", keyCombo: keyCombo, target: self,
+        action: #selector(moveWindowToCenter)
       ).register()
     }
   }
