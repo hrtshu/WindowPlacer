@@ -165,14 +165,18 @@ func checkAccessibilityPermissions() -> Bool {
     let trusted = AXIsProcessTrusted()
     if !trusted {
         let alert = NSAlert()
-        alert.messageText = "アクセシビリティ権限が必要です"
+        alert.messageText = "WindowPlacerにアクセシビリティ権限が必要です"
         alert.informativeText = "システム環境設定 > セキュリティとプライバシー > プライバシー > アクセシビリティで、このアプリケーションを許可してください。"
         alert.alertStyle = .warning
         alert.addButton(withTitle: "設定を開く")
         alert.addButton(withTitle: "キャンセル")
         
+        // アラートウィンドウを最前面に表示
+        alert.window.level = .floating
+        
         if alert.runModal() == .alertFirstButtonReturn {
-            NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Security.prefPane"))
+            let prefpaneUrl = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!
+            NSWorkspace.shared.open(prefpaneUrl)
         }
     }
     return trusted
