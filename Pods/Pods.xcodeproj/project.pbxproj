@@ -7,54 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0734CE88FFDD0713ADCEC282A8242CFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */; };
-		0ADA59D0F4BD9E6785896D68FBFE4A03 /* Pods-WindowPlacer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C700CEB7F140786FB3D8D1924C52BD /* Pods-WindowPlacer-dummy.m */; };
-		10E0248CB929189CA3F2BC773C87D92F /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA649C7607B10B6DB0B4E3B41E828627 /* HotKey.swift */; };
-		15CFF3475EFE102AB2FE76674D77EF40 /* Sauce-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 584A54CADB094A0E2A148269301E00FD /* Sauce-dummy.m */; };
-		1964A063A2CD341C5D59CAF9ED8914D7 /* KeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3430A9749620AC5164C6CA16F513C0 /* KeyExtension.swift */; };
-		1C223C4BF96946838117A9B306E1A1A3 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312DAAF49612C3D85B23CC9B6133102 /* CollectionExtension.swift */; };
-		1E890A185309FA5FD3AD109B37D2FFB8 /* ModifierEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328CFF70AB6B0A9B8BC9FFDF6744A4D /* ModifierEventHandler.swift */; };
-		30BAC61DD86D1E96B1C97CDFDAF029AF /* InputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AFB25ACFFAD16A9A5C50340175DF6B /* InputSource.swift */; };
-		3434212F0F1784FFEF74B170AC5F7C55 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54587FFAE57824CEDCD767785A00480 /* IntExtension.swift */; };
-		5467DC73AEB317E698F8E652DB60116E /* Magnet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC6001C389D0EEBA6AE9B10CB10DF3F /* Magnet-dummy.m */; };
-		5AB7697950D98BAAD9219081434DECF4 /* TISInputSource+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E766A1C0C759B75D69E20CBCED9754C /* TISInputSource+Property.swift */; };
-		64AE6EC22FBE5DE5EAB594A0CAD9016B /* HotKeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F725FB886050016EB175DCB976618D0C /* HotKeyCenter.swift */; };
-		6943A751838CF31E7B39357E509B2303 /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DED89B2BDD1C18D26EE5191084994C /* KeyboardLayout.swift */; };
-		7B5D62DB5CC421FDE1D48E846D7BBF15 /* Pods-WindowPlacer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A81D95BBF4FE65A178A598B45F1B7CB0 /* Pods-WindowPlacer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		81170935FBCDC2ABD8BF32A280E9ACF4 /* NSMenuItem+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BA9E5642A46D5E740FC60BA0A6D70 /* NSMenuItem+Key.swift */; };
-		8154FA6C53C0BD1715F6306E393B2A2B /* ModifierTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A46992264E2BE350A897FEDBB95C389 /* ModifierTransformer.swift */; };
-		8738C153C789461158D8C410F66FD22B /* Sauce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DFDB6F80C80B7AAB69C75F56E4D9 /* Sauce.swift */; };
-		9D7DDA24E8BE3396C8BAA0E41242E3B8 /* NSEventExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC5A412C8F2924047365A1788D7C182 /* NSEventExtension.swift */; };
-		B3CBB0BEB14A6F97E44066CBBBF2AE0E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */; };
-		BAB9CBAA0EA11C74E5557FA40F0CA1C4 /* KeyCombo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBF72190C6BCC2EA5A969ECF2EE6A51 /* KeyCombo.swift */; };
-		C8F308D06A40703A5C70A3871FE77E6B /* Magnet-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 561546EACD90B1AA87CB8AA8EBE1E378 /* Magnet-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1A2B0599971B4F83645C69E7BF6BEBA /* SpecialKeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9976C82BEFA75AF299ED85D966EF6 /* SpecialKeyCode.swift */; };
-		E4084FFE300E4FE42C628ED2A5241F3A /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC04D96C72AF2F892128FEAFE1D32E /* Key.swift */; };
-		E48C60283800DF9F21D17FF378578EC4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */; };
-		EAEB727D8F03A196599EA5EDD9E9BB23 /* Sauce-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C3A3A85A948CCF40EF0A14E2612F0C03 /* Sauce-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0305C837D0586A6BCB48A77281F85BBA /* Magnet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC6001C389D0EEBA6AE9B10CB10DF3F /* Magnet-dummy.m */; };
+		050E69AC4D965812C20DC7843441D3F3 /* Pods-WindowPlacer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C700CEB7F140786FB3D8D1924C52BD /* Pods-WindowPlacer-dummy.m */; };
+		0510062D2A485D603E723CC722F24999 /* SpecialKeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9976C82BEFA75AF299ED85D966EF6 /* SpecialKeyCode.swift */; };
+		12219B808FDB6B9861F101C1A5E00C0F /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DED89B2BDD1C18D26EE5191084994C /* KeyboardLayout.swift */; };
+		1523DC8C6E183EDC4F2C78AA9D30C132 /* Magnet-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 561546EACD90B1AA87CB8AA8EBE1E378 /* Magnet-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BFF079AE36DDB3A4992DF2EACD95383 /* NSEventExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC5A412C8F2924047365A1788D7C182 /* NSEventExtension.swift */; };
+		1DC42903D8A9B5C8CC77926C1929AE2B /* InputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AFB25ACFFAD16A9A5C50340175DF6B /* InputSource.swift */; };
+		1F05B51424B5FCEF132509EE98A01A8D /* Sauce-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C3A3A85A948CCF40EF0A14E2612F0C03 /* Sauce-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		361946D1E61428B7B44335D3652AE225 /* Sauce-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 584A54CADB094A0E2A148269301E00FD /* Sauce-dummy.m */; };
+		454F6A1918194D705BD8ECB5CFC96B9A /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312DAAF49612C3D85B23CC9B6133102 /* CollectionExtension.swift */; };
+		68094650562B7A462D117C945C2E5B71 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54587FFAE57824CEDCD767785A00480 /* IntExtension.swift */; };
+		68181C772BBF27AFBDC966F26D5430C0 /* ModifierEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328CFF70AB6B0A9B8BC9FFDF6744A4D /* ModifierEventHandler.swift */; };
+		71152691E43F438100383B630B2841B7 /* KeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3430A9749620AC5164C6CA16F513C0 /* KeyExtension.swift */; };
+		7D06608318D1EB85226E79E816FB34EA /* Pods-WindowPlacer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A81D95BBF4FE65A178A598B45F1B7CB0 /* Pods-WindowPlacer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7EAF1A1C15EFC8BEB05C01D0618C0DD6 /* HotKeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F725FB886050016EB175DCB976618D0C /* HotKeyCenter.swift */; };
+		93EEC649462E2274FA479C2CC234C7E0 /* Sauce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F43DFDB6F80C80B7AAB69C75F56E4D9 /* Sauce.swift */; };
+		A460D99967BAAEC873448AFB0C3FCD9B /* TISInputSource+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E766A1C0C759B75D69E20CBCED9754C /* TISInputSource+Property.swift */; };
+		A47FC0DDDDCF32533798FF7309401526 /* KeyCombo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBF72190C6BCC2EA5A969ECF2EE6A51 /* KeyCombo.swift */; };
+		A98DE1364C2F3BE864EB220886211789 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC04D96C72AF2F892128FEAFE1D32E /* Key.swift */; };
+		BB5FBF1A705514EF04957D10B4DE34F8 /* ModifierTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A46992264E2BE350A897FEDBB95C389 /* ModifierTransformer.swift */; };
+		DAEF1F8BE8B6FF3ABE55AF39B51AB079 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE00D34B275026D4656C738BED5A001 /* Cocoa.framework */; };
+		E3B3CBC81D641A18717AF2230D798571 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA649C7607B10B6DB0B4E3B41E828627 /* HotKey.swift */; };
+		E490708F8262DEFF4CCD9E76658689AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE00D34B275026D4656C738BED5A001 /* Cocoa.framework */; };
+		E88EBFA8339B8BDC7A4AF9E7A47A3B18 /* NSMenuItem+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BA9E5642A46D5E740FC60BA0A6D70 /* NSMenuItem+Key.swift */; };
+		EB6856D0CB5FF6B595833715C229FE29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE00D34B275026D4656C738BED5A001 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5287EF0AA0DDCFDCBC6558EF2719F112 /* PBXContainerItemProxy */ = {
+		3959C81B6627C93A7ABCC5824AD79CE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7C965F087BD52D10B405DF57848EC900;
 			remoteInfo = Sauce;
 		};
-		D8A867A1174DC131F860B1D495B5E930 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7C965F087BD52D10B405DF57848EC900;
-			remoteInfo = Sauce;
-		};
-		F4CBA875B7A9E40F39EE6069D0308BE5 /* PBXContainerItemProxy */ = {
+		BBB1DD8B83BB7B6C90E0CD4D3FB50632 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3E149398A6E587455F01510D83B29C52;
 			remoteInfo = Magnet;
+		};
+		FAD3066872A3219D4B0505CA041CEFD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7C965F087BD52D10B405DF57848EC900;
+			remoteInfo = Sauce;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -87,6 +87,7 @@
 		9328CFF70AB6B0A9B8BC9FFDF6744A4D /* ModifierEventHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModifierEventHandler.swift; path = Lib/Magnet/ModifierEventHandler.swift; sourceTree = "<group>"; };
 		9482E564101F4369518DA8530C568502 /* Pods-WindowPlacer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WindowPlacer-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9EE00D34B275026D4656C738BED5A001 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		A54587FFAE57824CEDCD767785A00480 /* IntExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IntExtension.swift; path = Lib/Magnet/Extensions/IntExtension.swift; sourceTree = "<group>"; };
 		A81D95BBF4FE65A178A598B45F1B7CB0 /* Pods-WindowPlacer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WindowPlacer-umbrella.h"; sourceTree = "<group>"; };
 		ABBF72190C6BCC2EA5A969ECF2EE6A51 /* KeyCombo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyCombo.swift; path = Lib/Magnet/KeyCombo.swift; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		BA649C7607B10B6DB0B4E3B41E828627 /* HotKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKey.swift; path = Lib/Magnet/HotKey.swift; sourceTree = "<group>"; };
 		BAF234B76B9FC2DE9D5D29C6879D72CD /* Pods-WindowPlacer */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-WindowPlacer"; path = Pods_WindowPlacer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C50F34AAB85F2D113FD01EE45D4D5F /* Magnet */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Magnet; path = Magnet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		C3A3A85A948CCF40EF0A14E2612F0C03 /* Sauce-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Sauce-umbrella.h"; sourceTree = "<group>"; };
 		C3CC04D96C72AF2F892128FEAFE1D32E /* Key.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Key.swift; path = Lib/Sauce/Key.swift; sourceTree = "<group>"; };
 		C8DED89B2BDD1C18D26EE5191084994C /* KeyboardLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyboardLayout.swift; path = Lib/Sauce/KeyboardLayout.swift; sourceTree = "<group>"; };
@@ -105,27 +105,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2F0141B86D81A7559CB3F1DBB9102146 /* Frameworks */ = {
+		787CB62053E2206291AF18579D0A0409 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E48C60283800DF9F21D17FF378578EC4 /* Cocoa.framework in Frameworks */,
+				DAEF1F8BE8B6FF3ABE55AF39B51AB079 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9210985FD099BEC92494BDA07085C76E /* Frameworks */ = {
+		91A4E3AB3434150C96DFC4CE21B810C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3CBB0BEB14A6F97E44066CBBBF2AE0E /* Cocoa.framework in Frameworks */,
+				EB6856D0CB5FF6B595833715C229FE29 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C42A706ECC139E6472336F097983B4DE /* Frameworks */ = {
+		A9D5BC4C2FA5DAE80C43EE5DE3CBF05E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0734CE88FFDD0713ADCEC282A8242CFD /* Cocoa.framework in Frameworks */,
+				E490708F8262DEFF4CCD9E76658689AA /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +153,14 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Magnet";
+			sourceTree = "<group>";
+		};
+		6CF8013CA832F8AB5DDAE0156C97FD88 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				9EE00D34B275026D4656C738BED5A001 /* Cocoa.framework */,
+			);
+			name = "OS X";
 			sourceTree = "<group>";
 		};
 		A50C6696A6CB485FB26A51E16CE16A32 /* Products */ = {
@@ -227,17 +235,9 @@
 		E0A1E60606E0BF6E2E10F1F01350DFE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E2A8756CA1FF5258A0344D53C5C60EC1 /* OS X */,
+				6CF8013CA832F8AB5DDAE0156C97FD88 /* OS X */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E2A8756CA1FF5258A0344D53C5C60EC1 /* OS X */ = {
-			isa = PBXGroup;
-			children = (
-				C1430F003D39D9906881A6AC724B7931 /* Cocoa.framework */,
-			);
-			name = "OS X";
 			sourceTree = "<group>";
 		};
 		E2FD7952C636E43DDB390373E1F199E9 /* Pods */ = {
@@ -269,27 +269,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0E8F39F9B13A213002D1C4EE56F64FBB /* Headers */ = {
+		702DA89CC09663C52BEEE70339A9C943 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAEB727D8F03A196599EA5EDD9E9BB23 /* Sauce-umbrella.h in Headers */,
+				1F05B51424B5FCEF132509EE98A01A8D /* Sauce-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9771DEF734114B7EA9D76E6691748643 /* Headers */ = {
+		97015F5A1F583F86C1228DF283686600 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8F308D06A40703A5C70A3871FE77E6B /* Magnet-umbrella.h in Headers */,
+				7D06608318D1EB85226E79E816FB34EA /* Pods-WindowPlacer-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A49407A2D09D62B30CF1AB64FD4447CF /* Headers */ = {
+		D0F02CF177B6A3332C00193D83723564 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B5D62DB5CC421FDE1D48E846D7BBF15 /* Pods-WindowPlacer-umbrella.h in Headers */,
+				1523DC8C6E183EDC4F2C78AA9D30C132 /* Magnet-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,17 +298,17 @@
 /* Begin PBXNativeTarget section */
 		3E149398A6E587455F01510D83B29C52 /* Magnet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E61A44C690037FBBEBAC2C221F3469C9 /* Build configuration list for PBXNativeTarget "Magnet" */;
+			buildConfigurationList = 288DB6D5A37B682955EB9CAC92DD839E /* Build configuration list for PBXNativeTarget "Magnet" */;
 			buildPhases = (
-				9771DEF734114B7EA9D76E6691748643 /* Headers */,
-				A869F0938D681B713A6E2D220178DC52 /* Sources */,
-				9210985FD099BEC92494BDA07085C76E /* Frameworks */,
-				301E801761B73E153A39708445293A43 /* Resources */,
+				D0F02CF177B6A3332C00193D83723564 /* Headers */,
+				B53EEAADE4D8B1BFF1E6DEC76FEBDA90 /* Sources */,
+				91A4E3AB3434150C96DFC4CE21B810C2 /* Frameworks */,
+				52856B460FE486EAE0A6EC6EE39FDB31 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				050F3558418FFCC110EDD52770CA2438 /* PBXTargetDependency */,
+				B50DD938DBD6DE98E3344C91EA238DC6 /* PBXTargetDependency */,
 			);
 			name = Magnet;
 			productName = Magnet;
@@ -317,18 +317,18 @@
 		};
 		618374794E6B4B2AD5821F5750DF74D4 /* Pods-WindowPlacer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ACFDCDE1F62899EA6F4822AF42AFFB0F /* Build configuration list for PBXNativeTarget "Pods-WindowPlacer" */;
+			buildConfigurationList = 5FD3C87A34DA9BD778CE14316E3D2552 /* Build configuration list for PBXNativeTarget "Pods-WindowPlacer" */;
 			buildPhases = (
-				A49407A2D09D62B30CF1AB64FD4447CF /* Headers */,
-				BF8EE8E7A8342C0520DC5B96E47F1A35 /* Sources */,
-				C42A706ECC139E6472336F097983B4DE /* Frameworks */,
-				4A28FA3A22462C9D4E4AF7EBF22975F7 /* Resources */,
+				97015F5A1F583F86C1228DF283686600 /* Headers */,
+				10F8A46F6CD5F91B38C0CD740512E860 /* Sources */,
+				A9D5BC4C2FA5DAE80C43EE5DE3CBF05E /* Frameworks */,
+				A92C003BCBE5AC1DD6A5E142BC9A2C2C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E6C42F66EC90A42F2F40FB00269BD873 /* PBXTargetDependency */,
-				8BDCB90FCB7F32D0921A89CA0EF1B284 /* PBXTargetDependency */,
+				6283E04EA64C06AC5CD33107BF1A2050 /* PBXTargetDependency */,
+				8341CF40C7CB66CA4ECB2252DB44485B /* PBXTargetDependency */,
 			);
 			name = "Pods-WindowPlacer";
 			productName = Pods_WindowPlacer;
@@ -337,12 +337,12 @@
 		};
 		7C965F087BD52D10B405DF57848EC900 /* Sauce */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 999B6F3D2F196AEB9EA960632DFC2A26 /* Build configuration list for PBXNativeTarget "Sauce" */;
+			buildConfigurationList = 5AC58D6F6CA09EAE6CBC27C9CE4E9B51 /* Build configuration list for PBXNativeTarget "Sauce" */;
 			buildPhases = (
-				0E8F39F9B13A213002D1C4EE56F64FBB /* Headers */,
-				2D78B5794C31B09AD75A0394BA4A95B8 /* Sources */,
-				2F0141B86D81A7559CB3F1DBB9102146 /* Frameworks */,
-				C3A4E2D3E3F707094819EBEA0A3465B9 /* Resources */,
+				702DA89CC09663C52BEEE70339A9C943 /* Headers */,
+				270337887B4F4E145764BA63075F253B /* Sources */,
+				787CB62053E2206291AF18579D0A0409 /* Frameworks */,
+				88D80F23644770A17BE64D5C0618DF81 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -359,8 +359,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -371,6 +371,8 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = A50C6696A6CB485FB26A51E16CE16A32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -383,21 +385,21 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		301E801761B73E153A39708445293A43 /* Resources */ = {
+		52856B460FE486EAE0A6EC6EE39FDB31 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A28FA3A22462C9D4E4AF7EBF22975F7 /* Resources */ = {
+		88D80F23644770A17BE64D5C0618DF81 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C3A4E2D3E3F707094819EBEA0A3465B9 /* Resources */ = {
+		A92C003BCBE5AC1DD6A5E142BC9A2C2C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -407,108 +409,71 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2D78B5794C31B09AD75A0394BA4A95B8 /* Sources */ = {
+		10F8A46F6CD5F91B38C0CD740512E860 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30BAC61DD86D1E96B1C97CDFDAF029AF /* InputSource.swift in Sources */,
-				E4084FFE300E4FE42C628ED2A5241F3A /* Key.swift in Sources */,
-				6943A751838CF31E7B39357E509B2303 /* KeyboardLayout.swift in Sources */,
-				8154FA6C53C0BD1715F6306E393B2A2B /* ModifierTransformer.swift in Sources */,
-				81170935FBCDC2ABD8BF32A280E9ACF4 /* NSMenuItem+Key.swift in Sources */,
-				8738C153C789461158D8C410F66FD22B /* Sauce.swift in Sources */,
-				15CFF3475EFE102AB2FE76674D77EF40 /* Sauce-dummy.m in Sources */,
-				E1A2B0599971B4F83645C69E7BF6BEBA /* SpecialKeyCode.swift in Sources */,
-				5AB7697950D98BAAD9219081434DECF4 /* TISInputSource+Property.swift in Sources */,
+				050E69AC4D965812C20DC7843441D3F3 /* Pods-WindowPlacer-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A869F0938D681B713A6E2D220178DC52 /* Sources */ = {
+		270337887B4F4E145764BA63075F253B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C223C4BF96946838117A9B306E1A1A3 /* CollectionExtension.swift in Sources */,
-				10E0248CB929189CA3F2BC773C87D92F /* HotKey.swift in Sources */,
-				64AE6EC22FBE5DE5EAB594A0CAD9016B /* HotKeyCenter.swift in Sources */,
-				3434212F0F1784FFEF74B170AC5F7C55 /* IntExtension.swift in Sources */,
-				BAB9CBAA0EA11C74E5557FA40F0CA1C4 /* KeyCombo.swift in Sources */,
-				1964A063A2CD341C5D59CAF9ED8914D7 /* KeyExtension.swift in Sources */,
-				5467DC73AEB317E698F8E652DB60116E /* Magnet-dummy.m in Sources */,
-				1E890A185309FA5FD3AD109B37D2FFB8 /* ModifierEventHandler.swift in Sources */,
-				9D7DDA24E8BE3396C8BAA0E41242E3B8 /* NSEventExtension.swift in Sources */,
+				1DC42903D8A9B5C8CC77926C1929AE2B /* InputSource.swift in Sources */,
+				A98DE1364C2F3BE864EB220886211789 /* Key.swift in Sources */,
+				12219B808FDB6B9861F101C1A5E00C0F /* KeyboardLayout.swift in Sources */,
+				BB5FBF1A705514EF04957D10B4DE34F8 /* ModifierTransformer.swift in Sources */,
+				E88EBFA8339B8BDC7A4AF9E7A47A3B18 /* NSMenuItem+Key.swift in Sources */,
+				93EEC649462E2274FA479C2CC234C7E0 /* Sauce.swift in Sources */,
+				361946D1E61428B7B44335D3652AE225 /* Sauce-dummy.m in Sources */,
+				0510062D2A485D603E723CC722F24999 /* SpecialKeyCode.swift in Sources */,
+				A460D99967BAAEC873448AFB0C3FCD9B /* TISInputSource+Property.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BF8EE8E7A8342C0520DC5B96E47F1A35 /* Sources */ = {
+		B53EEAADE4D8B1BFF1E6DEC76FEBDA90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ADA59D0F4BD9E6785896D68FBFE4A03 /* Pods-WindowPlacer-dummy.m in Sources */,
+				454F6A1918194D705BD8ECB5CFC96B9A /* CollectionExtension.swift in Sources */,
+				E3B3CBC81D641A18717AF2230D798571 /* HotKey.swift in Sources */,
+				7EAF1A1C15EFC8BEB05C01D0618C0DD6 /* HotKeyCenter.swift in Sources */,
+				68094650562B7A462D117C945C2E5B71 /* IntExtension.swift in Sources */,
+				A47FC0DDDDCF32533798FF7309401526 /* KeyCombo.swift in Sources */,
+				71152691E43F438100383B630B2841B7 /* KeyExtension.swift in Sources */,
+				0305C837D0586A6BCB48A77281F85BBA /* Magnet-dummy.m in Sources */,
+				68181C772BBF27AFBDC966F26D5430C0 /* ModifierEventHandler.swift in Sources */,
+				1BFF079AE36DDB3A4992DF2EACD95383 /* NSEventExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		050F3558418FFCC110EDD52770CA2438 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Sauce;
-			target = 7C965F087BD52D10B405DF57848EC900 /* Sauce */;
-			targetProxy = D8A867A1174DC131F860B1D495B5E930 /* PBXContainerItemProxy */;
-		};
-		8BDCB90FCB7F32D0921A89CA0EF1B284 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Sauce;
-			target = 7C965F087BD52D10B405DF57848EC900 /* Sauce */;
-			targetProxy = 5287EF0AA0DDCFDCBC6558EF2719F112 /* PBXContainerItemProxy */;
-		};
-		E6C42F66EC90A42F2F40FB00269BD873 /* PBXTargetDependency */ = {
+		6283E04EA64C06AC5CD33107BF1A2050 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Magnet;
 			target = 3E149398A6E587455F01510D83B29C52 /* Magnet */;
-			targetProxy = F4CBA875B7A9E40F39EE6069D0308BE5 /* PBXContainerItemProxy */;
+			targetProxy = BBB1DD8B83BB7B6C90E0CD4D3FB50632 /* PBXContainerItemProxy */;
+		};
+		8341CF40C7CB66CA4ECB2252DB44485B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Sauce;
+			target = 7C965F087BD52D10B405DF57848EC900 /* Sauce */;
+			targetProxy = FAD3066872A3219D4B0505CA041CEFD3 /* PBXContainerItemProxy */;
+		};
+		B50DD938DBD6DE98E3344C91EA238DC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Sauce;
+			target = 7C965F087BD52D10B405DF57848EC900 /* Sauce */;
+			targetProxy = 3959C81B6627C93A7ABCC5824AD79CE5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0FDC671029067B4A81A7FC322489E2C6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47576942ABA3806D059D1264D9167ABD /* Magnet.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Magnet/Magnet-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Magnet/Magnet-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MODULEMAP_FILE = "Target Support Files/Magnet/Magnet.modulemap";
-				PRODUCT_MODULE_NAME = Magnet;
-				PRODUCT_NAME = Magnet;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		324D76EF7515D163BDB654EBAAE063D1 /* Release */ = {
+		12BE7E7987B2C31820D0A69389BACB1C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B5CFA8BD85BB9D15EA6EA23470E9A88E /* Sauce.release.xcconfig */;
 			buildSettings = {
@@ -523,7 +488,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/Sauce/Sauce-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Target Support Files/Sauce/Sauce-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -539,13 +507,14 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		41C9F8FF13F8E32F516442E1008B0F4B /* Debug */ = {
+		1D3267B6ECF2F517425DD716C7839C23 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80657912BA953E63AFB9C12AC2CF02DB /* Pods-WindowPlacer.debug.xcconfig */;
 			buildSettings = {
@@ -560,6 +529,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-WindowPlacer/Pods-WindowPlacer-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -582,9 +553,9 @@
 			};
 			name = Debug;
 		};
-		76C9FCE7E0DC94BE6F03F7F79DD68407 /* Debug */ = {
+		297EB80FA319494DEA53D3B01002968E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F960EEE16474461B6F9611F63497270 /* Magnet.debug.xcconfig */;
+			baseConfigurationReference = 47576942ABA3806D059D1264D9167ABD /* Magnet.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -597,7 +568,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/Magnet/Magnet-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Target Support Files/Magnet/Magnet-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -613,11 +587,51 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
+		};
+		4283923CF1BDEAF0D41F0B270E43CEFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88F051365DEACBD84052B39A384B9994 /* Pods-WindowPlacer.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-WindowPlacer/Pods-WindowPlacer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MODULEMAP_FILE = "Target Support Files/Pods-WindowPlacer/Pods-WindowPlacer.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		86535CC5FD7B3FE94D120BAA14786448 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -678,43 +692,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		866C05FAFDDD4203D270F89EECE14F85 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88F051365DEACBD84052B39A384B9994 /* Pods-WindowPlacer.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-WindowPlacer/Pods-WindowPlacer-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MODULEMAP_FILE = "Target Support Files/Pods-WindowPlacer/Pods-WindowPlacer.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -784,7 +761,48 @@
 			};
 			name = Debug;
 		};
-		EAD33B99422879B08010F879CB00E3F0 /* Debug */ = {
+		B915E59A276271C9E3A2FA88E30F92D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F960EEE16474461B6F9611F63497270 /* Magnet.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/Magnet/Magnet-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/Magnet/Magnet-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/Magnet/Magnet.modulemap";
+				PRODUCT_MODULE_NAME = Magnet;
+				PRODUCT_NAME = Magnet;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E765116D0C3330BE54B15D8028BD1E90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC7DA658FDD338803C7BDB0739F146DF /* Sauce.debug.xcconfig */;
 			buildSettings = {
@@ -799,7 +817,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PREFIX_HEADER = "Target Support Files/Sauce/Sauce-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Target Support Files/Sauce/Sauce-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -815,6 +836,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -824,6 +846,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		288DB6D5A37B682955EB9CAC92DD839E /* Build configuration list for PBXNativeTarget "Magnet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B915E59A276271C9E3A2FA88E30F92D2 /* Debug */,
+				297EB80FA319494DEA53D3B01002968E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -833,29 +864,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		999B6F3D2F196AEB9EA960632DFC2A26 /* Build configuration list for PBXNativeTarget "Sauce" */ = {
+		5AC58D6F6CA09EAE6CBC27C9CE4E9B51 /* Build configuration list for PBXNativeTarget "Sauce" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EAD33B99422879B08010F879CB00E3F0 /* Debug */,
-				324D76EF7515D163BDB654EBAAE063D1 /* Release */,
+				E765116D0C3330BE54B15D8028BD1E90 /* Debug */,
+				12BE7E7987B2C31820D0A69389BACB1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ACFDCDE1F62899EA6F4822AF42AFFB0F /* Build configuration list for PBXNativeTarget "Pods-WindowPlacer" */ = {
+		5FD3C87A34DA9BD778CE14316E3D2552 /* Build configuration list for PBXNativeTarget "Pods-WindowPlacer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				41C9F8FF13F8E32F516442E1008B0F4B /* Debug */,
-				866C05FAFDDD4203D270F89EECE14F85 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E61A44C690037FBBEBAC2C221F3469C9 /* Build configuration list for PBXNativeTarget "Magnet" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				76C9FCE7E0DC94BE6F03F7F79DD68407 /* Debug */,
-				0FDC671029067B4A81A7FC322489E2C6 /* Release */,
+				1D3267B6ECF2F517425DD716C7839C23 /* Debug */,
+				4283923CF1BDEAF0D41F0B270E43CEFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

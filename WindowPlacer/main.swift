@@ -1,80 +1,87 @@
 import Cocoa
 import Magnet
 
-enum AppleScriptError: Error {
-  case executionError(NSDictionary)
-  case compilationError
+enum WindowManagementError: Error {
+    case windowNotFound
+    case accessibilityError
+    case invalidOperation
 }
 
 func resizeActiveWindow(size: (width: Int, height: Int)?, position: (x: Int, y: Int)?) throws {
-  var changePosition = ""
-  if let unwrappedPosition = position {
-    changePosition =
-      "set position of window1 to {\(String(unwrappedPosition.x)), \(String(unwrappedPosition.y))}"
-  }
-
-  var changeSize = ""
-  if let unwrappedSize = size {
-    changeSize =
-      "set size of window1 to {\(String(unwrappedSize.width)), \(String(unwrappedSize.height))}"
-  }
-
-  // 先にpositionを変更する（今いる位置が画面の隅の方だと変更したいサイズ分のスペースが確保されておらず画面サイズが変更したいサイズよりも小さくなる可能性がある）
-  let script =
-    """
-    tell application "System Events"
-      set frontmostApp to first application process whose frontmost is true
-
-      tell frontmostApp
-        set window1 to first window
-        \(changePosition)
-        \(changeSize)
-      end tell
-    end tell
-    """
-
-  if let scriptObject = NSAppleScript(source: script) {
-    var error: NSDictionary?
-    scriptObject.executeAndReturnError(&error)
-    if let error = error {
-      throw AppleScriptError.executionError(error)
+    // アクティブウィンドウを持つアプリケーションを取得
+    guard let frontmostApp = NSWorkspace.shared.frontmostApplication else {
+        throw WindowManagementError.windowNotFound
     }
-  } else {
-    throw AppleScriptError.compilationError
-  }
+    
+    let appRef = AXUIElementCreateApplication(frontmostApp.processIdentifier)
+    
+    // フロントウィンドウを取得
+    var windowRef: AnyObject?
+    let result = AXUIElementCopyAttributeValue(appRef, kAXFocusedWindowAttribute as CFString, &windowRef)
+    
+    guard result == .success, let window = windowRef else {
+        throw WindowManagementError.windowNotFound
+    }
+    
+    // 位置の変更
+    if let unwrappedPosition = position {
+        var point = CGPoint(x: CGFloat(unwrappedPosition.x), y: CGFloat(unwrappedPosition.y))
+        let axPosition = AXValueCreate(.cgPoint, &point)
+        
+        if AXUIElementSetAttributeValue(window as! AXUIElement, kAXPositionAttribute as CFString, axPosition as CFTypeRef) != .success {
+            throw WindowManagementError.accessibilityError
+        }
+    }
+    
+    // サイズの変更
+    if let unwrappedSize = size {
+        var size = CGSize(width: CGFloat(unwrappedSize.width), height: CGFloat(unwrappedSize.height))
+        let axSize = AXValueCreate(.cgSize, &size)
+        
+        if AXUIElementSetAttributeValue(window as! AXUIElement, kAXSizeAttribute as CFString, axSize as CFTypeRef) != .success {
+            throw WindowManagementError.accessibilityError
+        }
+    }
 }
 
-let scriptToGetActiveWindowSizeAndPosition =
-  """
-  tell application "System Events"
-    set frontmostApp to first application process whose frontmost is true
-
-    tell frontmostApp
-      set window1 to first window
-      set window1Size to get size of window1
-      set window1Position to get position of window1
-      do shell script "echo " & item 1 of window1Size & "," & item 2 of window1Size & "," & item 1 of window1Position & "," & item 2 of window1Position
-    end tell
-  end tell
-  """
-let scriptObjectToGetActiveWindowSizeAndPosition =
-  NSAppleScript(source: scriptToGetActiveWindowSizeAndPosition)!
-scriptObjectToGetActiveWindowSizeAndPosition.compileAndReturnError(nil)
-
-func getActiveWindowSizeAndPosition() throws -> (
-  size: CGSize, position: CGPoint
-) {
-  var error: NSDictionary?
-  let output = scriptObjectToGetActiveWindowSizeAndPosition.executeAndReturnError(&error)
-  if let error = error {
-    throw AppleScriptError.executionError(error)
-  }
-
-  let values = (output.stringValue ?? "").split(separator: ",").compactMap { Int($0) }
-  return (
-    size: CGSize(width: values[0], height: values[1]),
-    position: CGPoint(x: values[2], y: values[3])
-  )
+func getActiveWindowSizeAndPosition() throws -> (size: CGSize, position: CGPoint) {
+    guard let frontmostApp = NSWorkspace.shared.frontmostApplication else {
+        throw WindowManagementError.windowNotFound
+    }
+    
+    let appRef = AXUIElementCreateApplication(frontmostApp.processIdentifier)
+    
+    var windowRef: AnyObject?
+    guard AXUIElementCopyAttributeValue(appRef, kAXFocusedWindowAttribute as CFString, &windowRef) == .success,
+          let window = windowRef else {
+        throw WindowManagementError.windowNotFound
+    }
+    
+    // サイズを取得
+    var sizeRef: AnyObject?
+    guard AXUIElementCopyAttributeValue(window as! AXUIElement, kAXSizeAttribute as CFString, &sizeRef) == .success else {
+        throw WindowManagementError.accessibilityError
+    }
+    
+    var size = CGSize.zero
+    guard let axSize = sizeRef,
+          AXValueGetValue(axSize as! AXValue, .cgSize, &size) else {
+        throw WindowManagementError.invalidOperation
+    }
+    
+    // 位置を取得
+    var positionRef: AnyObject?
+    guard AXUIElementCopyAttributeValue(window as! AXUIElement, kAXPositionAttribute as CFString, &positionRef) == .success else {
+        throw WindowManagementError.accessibilityError
+    }
+    
+    var position = CGPoint.zero
+    guard let axPosition = positionRef,
+          AXValueGetValue(axPosition as! AXValue, .cgPoint, &position) else {
+        throw WindowManagementError.invalidOperation
+    }
+    
+    return (size: size, position: position)
 }
 
 let screenMarginRate: CGFloat = 0.07
@@ -152,6 +159,23 @@ func getScreenParams(windowSize: CGSize, windowPosition: CGPoint) -> (
   )
 
   return (size: screen.size, position: screen.position, margin: screenMargin)
+}
+
+func checkAccessibilityPermissions() -> Bool {
+    let trusted = AXIsProcessTrusted()
+    if !trusted {
+        let alert = NSAlert()
+        alert.messageText = "アクセシビリティ権限が必要です"
+        alert.informativeText = "システム環境設定 > セキュリティとプライバシー > プライバシー > アクセシビリティで、このアプリケーションを許可してください。"
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "設定を開く")
+        alert.addButton(withTitle: "キャンセル")
+        
+        if alert.runModal() == .alertFirstButtonReturn {
+            NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Security.prefPane"))
+        }
+    }
+    return trusted
 }
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -308,6 +332,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func applicationDidFinishLaunching(_ notification: Notification) {
+    guard checkAccessibilityPermissions() else {
+        NSApplication.shared.terminate(nil)
+        return
+    }
+    
     if let keyCombo = KeyCombo(key: .upArrow, cocoaModifiers: [.command, .option]) {
       HotKey(
         identifier: "CommandOptionUp", keyCombo: keyCombo, target: self,
