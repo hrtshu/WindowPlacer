@@ -2,7 +2,7 @@ PROJECT_NAME = WindowPlacer
 SCHEME_NAME = WindowPlacer
 
 build:
-	xcodebuild -workspace $(PROJECT_NAME).xcworkspace \
+	xcodebuild -project $(PROJECT_NAME).xcodeproj \
 		-scheme $(SCHEME_NAME) \
 		-configuration Release \
 		DEBUG_INFORMATION_FORMAT=dwarf \

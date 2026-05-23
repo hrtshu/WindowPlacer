@@ -341,36 +341,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return
     }
     
-    if let keyCombo = KeyCombo(key: .upArrow, cocoaModifiers: [.command, .option]) {
-      HotKey(
-        identifier: "CommandOptionUp", keyCombo: keyCombo, target: self,
-        action: #selector(resizeWindow)
-      ).register()
-    }
-    if let keyCombo = KeyCombo(key: .upArrow, cocoaModifiers: [.command, .option, .shift]) {
-      HotKey(
-        identifier: "CommandOptionShiftUp", keyCombo: keyCombo, target: self,
-        action: #selector(resizeWindowDoubled)
-      ).register()
-    }
-    if let keyCombo = KeyCombo(key: .leftArrow, cocoaModifiers: [.command, .option]) {
-      HotKey(
-        identifier: "CommandOptionLeft", keyCombo: keyCombo, target: self,
-        action: #selector(resizeWindowLeftHalf)
-      ).register()
-    }
-    if let keyCombo = KeyCombo(key: .rightArrow, cocoaModifiers: [.command, .option]) {
-      HotKey(
-        identifier: "CommandOptionRight", keyCombo: keyCombo, target: self,
-        action: #selector(resizeWindowRightHalf)
-      ).register()
-    }
-    if let keyCombo = KeyCombo(key: .return, cocoaModifiers: [.command, .option]) {
-      HotKey(
-        identifier: "CommandOptionEnter", keyCombo: keyCombo, target: self,
-        action: #selector(moveWindowToCenter)
-      ).register()
-    }
+    let keyComboUp = KeyCombo(key: .upArrow, cocoaModifiers: [.command, .option])
+    HotKey(
+      identifier: "CommandOptionUp", keyCombo: keyComboUp, target: self,
+      action: #selector(resizeWindow)
+    ).register()
+
+    let keyComboUpShift = KeyCombo(key: .upArrow, cocoaModifiers: [.command, .option, .shift])
+    HotKey(
+      identifier: "CommandOptionShiftUp", keyCombo: keyComboUpShift, target: self,
+      action: #selector(resizeWindowDoubled)
+    ).register()
+
+    let keyComboLeft = KeyCombo(key: .leftArrow, cocoaModifiers: [.command, .option])
+    HotKey(
+      identifier: "CommandOptionLeft", keyCombo: keyComboLeft, target: self,
+      action: #selector(resizeWindowLeftHalf)
+    ).register()
+
+    let keyComboRight = KeyCombo(key: .rightArrow, cocoaModifiers: [.command, .option])
+    HotKey(
+      identifier: "CommandOptionRight", keyCombo: keyComboRight, target: self,
+      action: #selector(resizeWindowRightHalf)
+    ).register()
+
+    let keyComboEnter = KeyCombo(key: .return, cocoaModifiers: [.command, .option])
+    HotKey(
+      identifier: "CommandOptionEnter", keyCombo: keyComboEnter, target: self,
+      action: #selector(moveWindowToCenter)
+    ).register()
   }
 }
 
