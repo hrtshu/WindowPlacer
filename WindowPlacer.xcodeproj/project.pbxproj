@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0FB57037F504AA2E29068592 /* Pods_WindowPlacer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F9B7B2F40C7A55C34CA40B /* Pods_WindowPlacer.framework */; };
+		3F4A5C9D2FC1B0B20096FB15 /* Magnet in Frameworks */ = {isa = PBXBuildFile; productRef = 3F4A5C9C2FC1B0B20096FB15 /* Magnet */; };
 		3FAF5A7F2C27CDDA00EA3B69 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAF5A7E2C27CDDA00EA3B69 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4A5C9D2FC1B0B20096FB15 /* Magnet in Frameworks */,
 				0FB57037F504AA2E29068592 /* Pods_WindowPlacer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,7 +85,6 @@
 				182051D7893C43707F40993B /* Pods-WindowPlacer.debug.xcconfig */,
 				B6F1EA609B8A3BC4680F7084 /* Pods-WindowPlacer.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -132,6 +133,9 @@
 				Base,
 			);
 			mainGroup = 3FAF5A722C27CDDA00EA3B69;
+			packageReferences = (
+				3F4A5C9B2FC1B0B20096FB15 /* XCRemoteSwiftPackageReference "Magnet" */,
+			);
 			productRefGroup = 3FAF5A7C2C27CDDA00EA3B69 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -338,6 +342,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F4A5C9B2FC1B0B20096FB15 /* XCRemoteSwiftPackageReference "Magnet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Clipy/Magnet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F4A5C9C2FC1B0B20096FB15 /* Magnet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F4A5C9B2FC1B0B20096FB15 /* XCRemoteSwiftPackageReference "Magnet" */;
+			productName = Magnet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3FAF5A732C27CDDA00EA3B69 /* Project object */;
 }
