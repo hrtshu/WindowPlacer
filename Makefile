@@ -2,7 +2,6 @@ PROJECT_NAME = WindowPlacer
 SCHEME_NAME = WindowPlacer
 
 build:
-	pod install
 	xcodebuild -workspace $(PROJECT_NAME).xcworkspace \
 		-scheme $(SCHEME_NAME) \
 		-configuration Release \
